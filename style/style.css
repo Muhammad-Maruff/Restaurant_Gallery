@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Poppins:ital,wght@0,100;0,400;0,700;1,400&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #ddd;
+  margin: 50px;
+}
+
+.container {
+  display: grid;
+  gap: 10px;
+}
+
+.header {
+  display: grid;
+  grid-template-areas:
+    "hero hero feature-1"
+    "hero hero feature-2";
+  gap: 30px;
+}
+
+.hero {
+  grid-area: hero;
+  min-height: 300px;
+  background-image: url(../image/hero.jpg);
+  background-position: center;
+  background-size: cover;
+  padding: 50px;
+}
+
+.hero * {
+  opacity: 0;
+}
+
+.features {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.feature-1 {
+  grid-area: feature-1;
+  background-image: url(../image/61336d6f2368f.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.feature-1 * {
+  display: none;
+}
+
+.feature-2 {
+  grid-area: feature-2;
+  background-image: url(../image/kuah-bakso_169.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+
+.feature-2 * {
+  display: none;
+}
+
+/* Navigasi */
+.menu {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  order: -1;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.menu .brand {
+  color: #003b46;
+  font-size: 28px;
+  text-shadow: 5px 5px 5px rgba(9, 124, 28, 0.637);
+}
+
+.menu ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  list-style: none;
+  text-align: center;
+  gap: 5px;
+  text-transform: uppercase;
+}
+
+.menu ul li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  background-color: #34675c;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.menu ul li a:hover {
+  font-weight: bold;
+  border: 1px solid white;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  height: 20px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu-toggle input {
+  position: absolute;
+  width: 40px;
+  height: 28px;
+  opacity: 0;
+  left: -5px;
+  top: -5px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.menu-toggle span {
+  width: 28px;
+  height: 3px;
+  background-color: #003b46;
+  display: block;
+  border-radius: 3px;
+  transition: all 0.8s;
+}
+
+/* Hamburger Animation */
+.menu-toggle span:nth-child(2) {
+  transform-origin: 0 0;
+}
+
+.menu-toggle span:nth-child(4) {
+  transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked ~ span:nth-child(2) {
+  background-color: white;
+  transform: rotate(45deg);
+  translate: -1px -1px;
+}
+
+.menu-toggle input:checked ~ span:nth-child(3) {
+  background-color: white;
+  transform: scale(0);
+}
+.menu-toggle input:checked ~ span:nth-child(4) {
+  background-color: white;
+  transform: rotate(-45deg);
+  translate: -1px 0;
+}
+
+/* Content */
+.foods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.cards {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  transition: all 0.8s;
+  cursor: pointer;
+}
+
+.cards:hover {
+  transform: scale(1.1);
+}
+
+.cards img {
+  width: 100%;
+  height: 140px;
+}
+
+.cards h3 {
+  font-size: 23px;
+}
+
+.cards p {
+  font: 13px;
+}
+
+/* Responsive Breakpoint */
+@media screen and (max-width: 1055px) {
+  .menu {
+    order: 1;
+    grid-template-columns: 1fr;
+    margin-top: 10px;
+  }
+
+  .menu .brand {
+    display: none;
+  }
+
+  .foods {
+    order: 2;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    order: -1;
+    justify-items: end;
+  }
+
+  .menu-toggle {
+    display: flex;
+    z-index: 2;
+  }
+
+  .menu ul {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 1;
+    background-color: #34675c;
+    transform: translateY(-100%);
+    transition: 0.8s;
+    opacity: 0;
+    width: 100%;
+  }
+
+  .menu ul.slide {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    grid-template-areas:
+      "hero"
+      "feature-1"
+      "feature-2";
+  }
+
+  .feature-1 {
+    min-height: 200px;
+  }
+
+  .feature-2 {
+    min-height: 200px;
+  }
+}
